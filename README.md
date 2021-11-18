@@ -15,8 +15,9 @@ assumir que a plataforma é uma rede composta por 5 computadores, sendo um
 responsável por coordenar o processamento e os demais responsáveis por
 realizar os cálculos. Na aplicação, há dois tipos de processos, a saber:
 
-  • Coordenador: responsável por orquestrar todo o trabalho da aplicação
-  • Calculador: responsável por calcular parte da matriz C
+  • **Coordenador**: responsável por orquestrar todo o trabalho da aplicação
+  
+  • **Calculador**: responsável por calcular parte da matriz C
   
 Em cada computador, há somente um processo da aplicação em execução.
 Assim, um computador executa o Coordenador, enquanto os demais executam
