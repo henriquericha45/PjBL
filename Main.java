@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,43 +6,73 @@ public class Main {
 
         Scanner t = new Scanner (System.in);
 
-        int m = 2;
+        int m = 4;
         int n = 2;
         int x = 2;
 
-        int a[][] = {{2,4}, {2,3}};
+        int a[][] = new int[m][x];
 
-        int b[][] = {{3,1}, {7,5}};
+        int b[][] = new int[x][n];
 
-        int c[][] = new int[m][x];
+        int c[][] = new int[m][n];
 
-        for (int i= 0; i < 2; i++){
-			System.out.println();
-		for (int j= 0; j <2; j++){
-			System.out.print ("Digite o elemento "+i+ " " +j+" da matriz a: ");
-				a[i][j] = t.nextInt();
-		}
-	}
-
-        for (int i= 0; i <2; i++){
-                System.out.println();
-            for (int j= 0; j <2; j++){
-                System.out.print ("Digite o elemento "+i+ " " +j+ " da matriz b: ");
-                    b[i][j] = t.nextInt();		
+        //Le a matriz A
+        for(int i=0; i<m; i++){
+            for(int j=0; j<x; j++){
+                System.out.print("Insira a posicao " + (i+1) + " " + (j+1) + " da matriz A: ");
+                a[i][j] = t.nextInt();
             }
         }
-        for (int i=0; i < a[i][i]; i++){
-                System.out.println();
-            for (int j= 0; j < b[j][j]; j++){
-                
-                for (x= 0; x < a[j][j]; x++){
-                    c[i][j] += a[i][x] * b[x][j];
-                        System.out.print(c[i][j]);
-                        System.out.print(" ");
 
-
-                }
+        //Le a matriz B
+        System.out.println();
+        for(int i=0; i<x; i++){
+            for(int j=0; j<n; j++){
+                System.out.print("Insira a posicao " + (i+1) + " " + (j+1) + " da matriz B: ");
+                b[i][j] = t.nextInt();
             }
         }
+
+        //Printa matriz A
+        System.out.print("\nMatriz A: ");
+        for(int i=0; i<m; i++){
+            System.out.println();
+            for(int j=0; j<x; j++){
+                System.out.print(a[i][j] + " ");
+            }
+        }
+
+        System.out.println();
+        
+        //Printa matriz B
+        System.out.print("\nMatriz B: ");
+        for(int i=0; i<x; i++){
+            System.out.println();
+            for(int j=0; j<n; j++){
+                System.out.print(b[i][j] + " ");
+            }
+        }
+
+        //C = A * C
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<x; j++) {
+                c[i][j] = 0;
+                for (int k=0; k<n; k++) {
+                    c[i][j] = c[i][j] + a[i][k] * b[k][j];
+                }   
+            }
+        }
+
+        //Printa matriz C
+        System.out.print("\nMatriz C: ");
+        for(int i=0; i<m; i++){
+            System.out.println();
+            for(int j=0; j<n; j++){
+                System.out.print(c[i][j] + " ");
+            }
+        }
+
+
+        t.close();
     }
 }
