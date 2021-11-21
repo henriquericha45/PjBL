@@ -1,35 +1,43 @@
 import java.util.Scanner;
+import java.util.Random;
+import java.lang.Math;
 
 public class Main {
+
+    public static double getRandomNumber(){
+        int max = 20;
+        int min = 1;
+
+        double x = (Math.random() * ((max - min) + 1)) + min;
+        return x;
+    }
 
 	public static void main(String[] args) {
 
         Scanner t = new Scanner (System.in);
+        Random r = new Random();
 
-        int m = 4;
+        int m = 6;
         int n = 2;
         int x = 2;
 
-        int a[][] = new int[m][x];
+        double a[][] = new double[m][x];
 
-        int b[][] = new int[x][n];
+        double b[][] = new double[x][n];
 
-        int c[][] = new int[m][n];
+        double c[][] = new double[m][n];
 
         //Le a matriz A
         for(int i=0; i<m; i++){
             for(int j=0; j<x; j++){
-                System.out.print("Insira a posicao " + (i+1) + " " + (j+1) + " da matriz A: ");
-                a[i][j] = t.nextInt();
+                a[i][j] = getRandomNumber();
             }
         }
 
         //Le a matriz B
-        System.out.println();
         for(int i=0; i<x; i++){
             for(int j=0; j<n; j++){
-                System.out.print("Insira a posicao " + (i+1) + " " + (j+1) + " da matriz B: ");
-                b[i][j] = t.nextInt();
+                b[i][j] = getRandomNumber();
             }
         }
 
