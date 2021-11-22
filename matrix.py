@@ -16,6 +16,6 @@ for i in range(n_i):
 
 with open("matrix"+ str(n_i) + "X" + str(n_j) +".txt", "w") as myfile:
     wr = csv.writer(myfile)
-    wr.writerow(matrix)
+    wr.writerows(matrix)
 
 print(matrix)

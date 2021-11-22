@@ -61,7 +61,9 @@ public class Main {
             }
         }
 
-        //C = A * C
+        System.out.println();
+
+        //C = A * B
         for (int i=0; i<m; i++) {
             for (int j=0; j<x; j++) {
                 c[i][j] = 0;
