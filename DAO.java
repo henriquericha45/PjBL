@@ -1,36 +1,98 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class DAO {
 
-	String fileName = "PjBl.csv";
-	String SEPARADOR = ",";
+	
+	
 
-	FileReader reader;
-	BufferedReader buffer;
+	public static double[][] getFile(String path, int numLinhas, int numColunas) {
 
-	public double[][] getFile() throws IOException {
+		String line = "";
+		String SEPARADOR = ",";
+		double[][] matrix = new double[numLinhas][numColunas];
+		int j = 0;
 
-		FileReader arquivo = new FileReader(fileName);
-		BufferedReader br = new BufferedReader(arquivo);
-		br.readLine();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
 
-		ArrayList<Produto> lista = new ArrayList<Produto>();
-		String linha;
-		while ((linha = br.readLine()) != null) {
-			String[] tokens = linha.split(SEPARADOR);
-
-			if (tokens[0].equals("Filme")) {
-				Filme filme = new Filme("Filme", tokens[1], tokens[2], tokens[3], Integer.parseInt(tokens[4]));
-				lista.add(filme);
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(SEPARADOR);
+				
+				for(int i=0; i<values.length; i++){
+					matrix[i][j] = Double.parseDouble(values[i]);
+					//System.out.println(values[i]);
+				}
+				j++;
 			}
-			if (tokens[0].equals("Serie")) {
-				Serie serie = new Serie("Serie", tokens[1], tokens[2], tokens[3], Integer.parseInt(tokens[4]),
-						Integer.parseInt(tokens[5]));
-				lista.add(serie);
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+
+		return matrix;
+	}
+
+	public static void main(String[] args) {
+		String path = "matrix3X3.txt";
+
+		double[][] matrix = getFile(path, 3, 3);
+
+		for(int i=0; i<3; i++){
+			for(int j=0; j<3; j++){
+				System.out.println(matrix[i][j]);
 			}
 		}
-		System.out.println("Dados recolhidos!");
-		return lista;
 	}
 }
+
+/*
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class DAO {
+
+	
+	
+
+	public static double[][] getFile(String path) {
+
+		String line = "";
+		String SEPARADOR = ",";
+		double[][] matrix = new double[2][2];
+		int j = 0;
+
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(path));
+
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(SEPARADOR);
+				
+				for(int i=0; i<values.length; i++){
+					matrix[i][j] = Double.parseDouble(values[i]);
+					System.out.println(values[i]);
+				}
+				j++;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+
+		return matrix;
+	}
+
+	public static void main(String[] args) {
+		String path = "matrix3X3.txt";
+
+		double[][] matrix = getFile(path);
+	}
+}
+*/
