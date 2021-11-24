@@ -34,13 +34,13 @@ public class DAO {
 	}
 
 	public static void main(String[] args) {
-		String path = "matrix3X3.txt";
+		String path = "matrix4X4.txt";
 
-		double[][] matrix = getFile(path, 3, 3);
+		double[][] matrix = getFile(path, 4, 4);
 
-		for(int i=0; i<3; i++){
-			for(int j=0; j<3; j++){
-				System.out.println(matrix[i][j]);
+		for(int i=0; i<4; i++){
+			for(int j=0; j<4; j++){
+				System.out.println(matrix[j][i]);
 			}
 		}
 	}

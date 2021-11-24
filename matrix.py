@@ -14,7 +14,7 @@ for i in range(n_i):
 
     matrix.append(line)
 
-with open("matrix"+ str(n_i) + "X" + str(n_j) +".txt", "w") as myfile:
+with open("matrix"+ str(n_i) + "X" + str(n_j) +".txt", "w", newline="") as myfile:
     wr = csv.writer(myfile)
     wr.writerows(matrix)
 
