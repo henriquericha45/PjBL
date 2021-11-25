@@ -1,8 +1,9 @@
 import random
 import csv
 
-n_i = int(input("N Lines:"))
-n_j = int(input("N Columns:"))
+n_i = int(input("N Lines: "))
+n_j = int(input("N Columns: "))
+name = input("File Name: ")
 
 matrix = []
 
@@ -14,7 +15,7 @@ for i in range(n_i):
 
     matrix.append(line)
 
-with open("matrix"+ str(n_i) + "X" + str(n_j) +".txt", "w", newline="") as myfile:
+with open(name +".txt", "w", newline="") as myfile:
     wr = csv.writer(myfile)
     wr.writerows(matrix)
 

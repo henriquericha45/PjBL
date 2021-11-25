@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class DAO {
 
+
 	public static double[][] getFile(String path, int numLinhas, int numColunas) {
 
 		String line = "";
