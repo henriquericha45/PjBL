@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class DAO {
@@ -34,15 +35,23 @@ public class DAO {
 		return matrix;
 	}
 
-	public static void main(String[] args) {
-		String path = "matrix4X4.txt";
+	public static void generateFile(double[][] matrix) throws IOException{
 
-		double[][] matrix = getFile(path, 4, 4);
 
-		for(int i=0; i<4; i++){
-			for(int j=0; j<4; j++){
-				System.out.println(matrix[j][i]);
+		
+		FileWriter writer = new FileWriter("matrixC.txt");
+
+		
+
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[i].length; j++) {
+				writer.append(String.valueOf(matrix[i][j])+",");
+				
 			}
+			writer.append("\n");
 		}
+		writer.close();
+
+		
 	}
 }

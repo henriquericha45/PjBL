@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.Random;
+//import java.util.Random;
 import java.lang.Math;
 
 public class Main {
@@ -15,7 +15,7 @@ public class Main {
 	public static void main(String[] args) {
 
         Scanner t = new Scanner (System.in);
-        Random r = new Random();
+        //Random r = new Random();
 
         int m = 4;
         int n = 4;

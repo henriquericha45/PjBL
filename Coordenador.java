@@ -1,6 +1,9 @@
+import java.io.IOException;
+import java.util.concurrent.Semaphore;
+
 public class Coordenador{
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         /*
         carrega as matrizes A e B (a partir dos dados dos arquivos 
@@ -10,18 +13,17 @@ public class Coordenador{
         String pathA = "matrixA.txt";
         String pathB = "matrixB.txt";
         
-        
+        Semaphore mutex = new Semaphore ( 1 );
+        Semaphore barreira = new Semaphore ( -3 );
+
         int m = 4;
         int n = 4;
         int k = 4;
 
-        int n_calc = 1;
+        int n_calc = 4;
         
         double[][] matrixA = DAO.getFile(pathA, m, k);
         double[][] matrixB = DAO.getFile(pathB, k, n);
-
-
-      
 
 
         /*
@@ -62,7 +64,7 @@ public class Coordenador{
 
                 Calculo calc = new Calculo(matrixA, matrixB, anterior, limite+anterior);
 
-                Trabalhador trab = new Trabalhador(calc, 1000 * (i+1) );
+                Trabalhador trab = new Trabalhador(calc, 1000 * (i+1) , mutex, barreira, matrixC);
                 trab.start();
 
                 anterior = anterior + limite + 1;
@@ -72,7 +74,7 @@ public class Coordenador{
 
                 Calculo calc = new Calculo(matrixA, matrixB, anterior, limite+anterior+1);
 
-                Trabalhador trab = new Trabalhador(calc, 1000 * (i+1) );
+                Trabalhador trab = new Trabalhador(calc, 1000 * (i+1), mutex, barreira, matrixC);
                 trab.start();
 
                 anterior = anterior + limite + 2;
@@ -83,6 +85,17 @@ public class Coordenador{
             
             
             
+        }
+
+        barreira.acquire();
+
+        //Printa matriz C
+        System.out.print("\nMatriz C: ");
+        for(int i=0; i<m; i++){
+            System.out.println();
+            for(int j=0; j<n; j++){
+                System.out.print(matrixC[i][j] + " ");
+            }
         }
 
 
@@ -98,6 +111,11 @@ public class Coordenador{
          gera o arquivo correspondente à matriz C
           */
 
+          try {
+            DAO.generateFile(matrixC);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

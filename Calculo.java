@@ -22,37 +22,31 @@ public class Calculo implements Serializable{
     }
 
     public int m(){
-
         return matrixA.length;
-
     }
 
     public int n(){
-
         return matrixB[0].length;
-
-        
     }
 
     public int k(){
-
         return matrixB.length;
-
-        
     }
 
     public double[][] matrixA(){
-
         return matrixA;
-
-        
     }
 
-        public double[][] matrixB(){
-
+    public double[][] matrixB(){
         return matrixB;
+    }
 
-        
+    public int inicio(){
+        return inicio;
+    }
+
+    public int fim(){
+        return fim;
     }
 
 }

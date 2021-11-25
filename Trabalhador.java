@@ -2,17 +2,24 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Semaphore;
 
 
 public class Trabalhador extends Thread {
 
     Calculo c;
     int porta;
+    Semaphore mutex;
+    Semaphore barreira;
+    double[][] matrixC;
 
-    public Trabalhador(Calculo c, int porta){
+    public Trabalhador(Calculo c, int porta, Semaphore mutex, Semaphore barreira, double[][] matrixC){
 
         this.c = c;
         this.porta = porta;
+        this.mutex = mutex;
+        this.barreira = barreira;
+        this.matrixC = matrixC;
 
     }
 
@@ -37,7 +44,7 @@ public class Trabalhador extends Thread {
 
             //RECEBE OBJETO
             
-            ServerSocket server = new ServerSocket(1500); // porta de entrada
+            ServerSocket server = new ServerSocket(porta+20); // porta de entrada
             System.out.println("Aguardando uma conexão ...");
 
             Socket s = server.accept(); // recebe o pacote
@@ -49,15 +56,20 @@ public class Trabalhador extends Thread {
 
             double[][] r = (double[][]) leitor.readObject(); // lê o objeto
 
+            mutex.acquire();
 
-            //Printa matriz C
-            System.out.print("\nMatriz C: ");
             for(int i=0; i<c.m(); i++){
-                System.out.println();
                 for(int j=0; j<c.n(); j++){
-                    System.out.print(r[i][j] + " ");
+                    if(r[i][j] != 0){
+                        matrixC[i][j] = r[i][j];
+                    }
                 }
             }
+
+            mutex.release();
+            barreira.release();
+
+
 
             s.close();
             server.close();

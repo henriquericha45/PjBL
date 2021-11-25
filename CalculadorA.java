@@ -46,27 +46,48 @@ public class CalculadorA{
             System.out.println("m: " + m);
             System.out.println("n: " + n);
             System.out.println("x: " + x);
+            System.out.println("inicio: " + c.inicio);
+            System.out.println("fim: " + c.fim);
 
             //C = A * B
 
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < x; j++) {
-                    
-                    matrixC[i][j] = 0;
+            int contador = 0;
 
-                    for (int k = 0; k < n; k++) {
-                        matrixC[i][j] = matrixC[i][j] + matrixA[i][k] * matrixB[k][j];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    
+                    //matrixC[i][j] = 0;
+
+                    for (int k = 0; k < x; k++) {
+                        if(contador >= c.inicio && contador <= c.fim){
+
+                            matrixC[i][j] =  matrixA[i][k] * matrixB[k][j];
+
+                        }
+                        
+                        
                     }  
+                    contador++;
 
                 }
 
             }
 
+                        //Printa matriz C
+            System.out.print("\nMatriz C: ");
+            for(int i=0; i<c.m(); i++){
+                System.out.println();
+                for(int j=0; j<c.n(); j++){
+                    System.out.print(matrixC[i][j] + " ");
+                }
+            }
+
+
             //Resposta r = new Resposta(matrixC);
       
             //ENVIA OBJETO
 
-            Socket s = new Socket("localhost", 1500);
+            Socket s = new Socket("localhost", porta+20);
 
             ObjectOutputStream gravador = new ObjectOutputStream(s.getOutputStream());
 
