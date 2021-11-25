@@ -1,4 +1,5 @@
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -13,6 +14,9 @@ public class CalculadorA{
         
 
         try {
+
+            //RECEBE OBJETO
+
             ServerSocket server = new ServerSocket(porta); // porta de entrada
             System.out.println("Aguardando uma conexão ...");
 
@@ -28,7 +32,24 @@ public class CalculadorA{
 
             socket.close();
             server.close();
-            // encerra
+            
+            //CALCULA
+
+            
+
+
+            //ENVIA OBJETO
+
+            Socket s = new Socket("localhost", porta);
+
+            ObjectOutputStream gravador = new ObjectOutputStream(s.getOutputStream());
+
+            System.out.println("Enviando");
+
+            gravador.writeObject(c); // gera uma sequência de bytes
+
+            System.out.println("Enviado!");
+            s.close();
 
 
         } 
