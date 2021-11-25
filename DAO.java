@@ -20,7 +20,7 @@ public class DAO {
 				String[] values = line.split(SEPARADOR);
 				
 				for(int i=0; i<values.length; i++){
-					matrix[i][j] = Double.parseDouble(values[i]);
+					matrix[j][i] = Double.parseDouble(values[i]);
 				}
 				j++;
 			}

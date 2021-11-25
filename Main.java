@@ -17,9 +17,9 @@ public class Main {
         Scanner t = new Scanner (System.in);
         Random r = new Random();
 
-        int m = 6;
-        int n = 2;
-        int x = 2;
+        int m = 4;
+        int n = 4;
+        int x = 4;
 
         double a[][] = new double[m][x];
 
@@ -30,14 +30,14 @@ public class Main {
         //Le a matriz A
         for(int i=0; i<m; i++){
             for(int j=0; j<x; j++){
-                a[i][j] = getRandomNumber();
+                a[i][j] = t.nextDouble();
             }
         }
 
         //Le a matriz B
         for(int i=0; i<x; i++){
             for(int j=0; j<n; j++){
-                b[i][j] = getRandomNumber();
+                b[i][j] = t.nextDouble();
             }
         }
 

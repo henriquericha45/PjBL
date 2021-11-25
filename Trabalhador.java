@@ -47,8 +47,17 @@ public class Trabalhador extends Thread {
 
             System.out.println("Aguardando um objeto ...");
 
-            Resposta r = (Resposta) leitor.readObject(); // lê o objeto
-            
+            double[][] r = (double[][]) leitor.readObject(); // lê o objeto
+
+
+            //Printa matriz C
+            System.out.print("\nMatriz C: ");
+            for(int i=0; i<c.m(); i++){
+                System.out.println();
+                for(int j=0; j<c.n(); j++){
+                    System.out.print(r[i][j] + " ");
+                }
+            }
 
             s.close();
             server.close();

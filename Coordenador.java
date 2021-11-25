@@ -11,14 +11,18 @@ public class Coordenador{
         String pathB = "matrixB.txt";
         
         
-        int m = 400;
-        int n = 400;
-        int k = 400;
+        int m = 4;
+        int n = 4;
+        int k = 4;
 
-        int n_calc = 4;
+        int n_calc = 1;
         
         double[][] matrixA = DAO.getFile(pathA, m, k);
         double[][] matrixB = DAO.getFile(pathB, k, n);
+
+
+      
+
 
         /*
         aloca espaço em memória para armazenar a matriz C
